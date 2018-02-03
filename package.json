@@ -1,0 +1,10 @@
+{
+  "name": "alien",
+  "version": "0.1.0",
+  "description": "Create a fully configurable fluent interface to your DTO",
+  "main": "index.js",
+  "repository": "https://www.github.com/natepisarski/alien",
+  "author": "Nathaniel Pisarski <nathanpisarski@gmail.com>",
+  "license": "MIT",
+  "private": false
+}
