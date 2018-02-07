@@ -147,7 +147,7 @@ export const ℿ = (builderArray, options) => {
         if(schema) {
             finalizeActions.push(() => {
               for(const key of builderObject.schema.keys) {
-                  if(key === undefined) {
+                  if(builderObject[[key]] === undefined) {
                       delete builderObject[[key]]
                   }
               }
