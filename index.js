@@ -29,7 +29,7 @@ const alienDefaults = {
 }
 
 export const ℿ = (builderArray, options) => {
-    const getValueOrDefault = (section, ident) => ( options && options[section] && (options[section][ident] !== null && options[section][ident] !== undefined ))
+    const getValueOrDefault = (section, ident) => ( options && options[section] && (options[section][ident] !== null && options[section][ident] !== undefined )) && options[section][ident]
         || alienDefaults[section][ident]
 
     const start = getValueOrDefault('advanced', 'startAction')

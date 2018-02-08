@@ -36,3 +36,12 @@ describe('Alien finalizers', () => {
         expect(setNameUnsetEmail.setName).toBeUndefined()
     })
 })
+
+describe('Alien Control properties', () => {
+    test('nameTransformer properly works', () => {
+      let setNameUnsetEmail = ℿ(['name', 'email'], {control: { nameTransformer: (name => "_" + name)}})
+        setNameUnsetEmail.setName('John')
+        expect(setNameUnsetEmail._name).toBe('John')
+        expect(setNameUnsetEmail._email).toBeUndefined()
+    })
+})
