@@ -41,7 +41,33 @@ describe('Alien Control properties', () => {
     test('nameTransformer properly works', () => {
       let setNameUnsetEmail = ℿ(['name', 'email'], {control: { nameTransformer: (name => "_" + name)}})
         setNameUnsetEmail.setName('John')
+
         expect(setNameUnsetEmail._name).toBe('John')
         expect(setNameUnsetEmail._email).toBeUndefined()
+    })
+
+    test('setterTransformer properly works', () => {
+        let setNameUnsetEmail = ℿ(['name', 'email'], {control: {setterTransformer: (name => "_" + name)}})
+        setNameUnsetEmail._name('John')
+
+        expect(setNameUnsetEmail.name).toBe('John')
+        expect(setNameUnsetEmail.email).toBeUndefined()
+    })
+
+    test('setObjects properly works', () => {
+        let setNameSetEmail = ℿ(['name', 'email'], {control: {setObjects: true}}).set({name: 'John', email: "john@email.com"})
+
+        expect(setNameSetEmail.name).toBe('John')
+        expect(setNameSetEmail.email).toBe('john@email.com')
+    })
+
+    test('createBlankProperty properly works', () => {
+        let blankSetNameUnsetEmail = ℿ(['name', 'email'], {control: {createBlankProperty: true}})
+        let setNameUnsetEmail = ℿ(['name', 'email'], {control: {createBlankProperty: false}})
+
+        blankSetNameUnsetEmail.setName('John')
+
+        expect(blankSetNameUnsetEmail.email).toBeUndefined()
+        expect(setNameUnsetEmail.email).not.toBeDefined()
     })
 })
