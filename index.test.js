@@ -71,3 +71,27 @@ describe('Alien Control properties', () => {
         expect(setNameUnsetEmail.email).not.toBeDefined()
     })
 })
+
+describe('Alien Advanced properties', () => {
+  test('startAction properly works', () => {
+    let setNameUnsetEmail = ℿ(['name', 'email'], {advanced: {startAction: (builder) => builder.SEE_IF_I_EXIST = 'yes'}}).setName('John')
+
+      expect(setNameUnsetEmail.SEE_IF_I_EXIST).toBe('yes')
+  })
+
+    test('stepAction properly works', () => {
+        let setNameSetEmail = ℿ(['name', 'email'], {advanced: {stepAction: (builder, name) => builder.count = (builder.count || 0) + 1}})
+            .setName('John')
+            .setEmail('john@email.com')
+
+        expect(setNameSetEmail.count).toBe(2)
+    })
+
+    test('finalAction properly works', () => {
+      let setNameUnsetEmail = ℿ(['name', 'email'], {advanced: {finalAction: builder => builder.email = 'john@email.com'}})
+          .setName('John')
+          .finalize()
+
+        expect(setNameUnsetEmail.email).toBe('john@email.com')
+    })
+})

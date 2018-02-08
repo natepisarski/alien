@@ -23,7 +23,7 @@ const alienDefaults = {
     advanced: {
         startAction: (object = undefined) => {},
         finalAction: (object = undefined) => {},
-        stepAction: (name = undefined) => {},
+        stepAction: (object = undefined, name = undefined) => {},
         allowUnsafeFinalization: true
     }
 }
@@ -76,7 +76,7 @@ export const ℿ = (builderArray, options) => {
             }
 
         }
-        stepAction(name)
+        stepAction(builderObject, name)
     }
 
     if(setObjects) {
