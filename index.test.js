@@ -92,6 +92,6 @@ describe('Alien Advanced properties', () => {
           .setName('John')
           .finalize()
 
-        expect(setNameUnsetEmail.email).toBe('john@email.com')
+        expect(setNameUnsetEmail.email).toBe('john@email.com'       )
     })
 })
