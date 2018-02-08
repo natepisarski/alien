@@ -24,4 +24,15 @@ describe('Alien finalizers', () => {
       expect(setNameUnsetEmail.name).toBe('John')
       expect(setNameUnsetEmail).not.toHaveProperty('email')
   })
+    test('RemoveSetters properly works', () => {
+      let setNameUnsetEmail = ℿ(['name', 'email'], {finalization: {removeSetters: true}})
+        setNameUnsetEmail.setName('John')
+        setNameUnsetEmail.finalize()
+
+        expect(setNameUnsetEmail.name).toBe('John')
+
+        expect(setNameUnsetEmail.email).toBeUndefined()
+        expect(setNameUnsetEmail.setEmail).toBeUndefined()
+        expect(setNameUnsetEmail.setName).toBeUndefined()
+    })
 })
