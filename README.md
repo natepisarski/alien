@@ -54,3 +54,10 @@ You can configure:
 Any of the options are configurable with the least amount of characters to uniqueled identify the setting...  (what?)
 
 So, `control.nameTransformer` can be set with `{c: {n" true}}` (c = `control`, n = `nameTransformer`)
+
+This is called a `fast-option`, and it's a large part of what makes alien appealable as a means of reducing the amount of code that needs to be transmitted to the client..
+
+### Warning: Semver not affected from fast-option breakages
+Since the alien developers cannot know what `fast-option`'s are being used, if a change is made that may break your `fast-option`, it will not bump the major semver version. Be careful! In many cases, it's safer to use the `camel-case-initialism` match.
+
+So, `{c: {nT: ''}}` for `{control: {nameTransformer: ''}}`
