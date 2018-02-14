@@ -156,11 +156,16 @@ export const ℿ = (builderArray, alienOptions) => {
 
     // Step 1: Iterate over the builder array
     for (const parameter of builderArray) {
-        const name = nameTransformer(parameter)
-        const setterName = setterTransformer(parameter)
+        const currentName = typeof parameter === 'object' ? first(Object.keys(parameter)) : parameter
+        const name = nameTransformer(currentName)
+        const setterName = setterTransformer(currentName)
 
         if (createBlankProperty) {
             builderObject[name] = undefined
+        }
+
+        if(typeof parameter === 'object') {
+            builderObject[name] = parameter[currentName]
         }
 
         builderObject[[setterName]] = (value) => {

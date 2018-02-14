@@ -120,3 +120,10 @@ describe('Alien fast options', () => {
         expect(underscoreEmail._email).toBe('john')
     })
 })
+
+describe('Alien default values', () => {
+    test('Alien default values', () => {
+      let setNameUnsetEmail = ℿ([{name: 'John'}, 'email'])
+        expect(setNameUnsetEmail.name).toBe('John')
+    })
+})
