@@ -23,7 +23,8 @@
     "babel-plugin-transform-es2015-modules-commonjs": "^6.26.0",
     "babel-preset-es2017": "^6.24.1",
     "babel-preset-es2017-native-modules": "*",
-    "jest-cli": "^22.1.4"
+    "jest-cli": "^22.1.4",
+    "lodash": "^4.17.5"
   },
   "jest": {
     "testEnvironment": "jsdom"
