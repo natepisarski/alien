@@ -1,4 +1,4 @@
-import {head, filter, size, map} from 'lodash'
+import {head, filter, size, map, findIndex} from 'lodash'
 
 const toCamelCase = (prefix, string) => {
     return ('' + prefix + (string.charAt(0).toUpperCase()) + string.substring(1, string.length))
@@ -46,8 +46,14 @@ export const fastOption = (fastOption) => {
     const fastOptionKeys = Object.keys(fastOption)
     const optionKeys = Object.keys(alienDefaults)
 
-    const findFirstTakeMatch = (keyList, fastOptionKey) => first(keyList, key => key.substring(0, size(fastOptionKey)) === fastOptionKey)
-    const camelCaseInitialismMatch = (keyList, fastOptionKey) => findFirstTakeMatch(map(keyList, camelCaseInitialism), fastOptionKey)
+    const findFirstTakeMatch = (keyList, fastOptionKey) => first(keyList, key => key.substring(0, size(fastOptionKey)).toUpperCase() === fastOptionKey.toUpperCase())
+    const camelCaseInitialismMatch = (keyList, fastOptionKey) =>
+    {
+        const camelCaseInitialisms = map(keyList, camelCaseInitialism)
+
+        const matchingInitialism = findFirstTakeMatch(camelCaseInitialisms, fastOptionKey)
+        return keyList[[findIndex(camelCaseInitialisms, cci => cci === matchingInitialism)]]
+    }
 
     const test = (keyList, fastOptionKey) => findFirstTakeMatch(keyList, fastOptionKey) || camelCaseInitialismMatch(keyList, fastOptionKey)
 

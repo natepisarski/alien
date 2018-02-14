@@ -97,21 +97,26 @@ describe('Alien Advanced properties', () => {
 })
 
 describe('Alien fast options', () => {
-  test('Alien fast-options properly resolve', () => {
-    let takeFastOption = fastOption({a: {sta: 15679}})
-      expect(takeFastOption.advanced.startAction).toBe(15679)
+    test('Alien fast-options properly resolve', () => {
+        let takeFastOption = fastOption({a: {sta: 15679}})
+        expect(takeFastOption.advanced.startAction).toBe(15679)
 
-      let takeFastOptionMultiRoot = fastOption({a: {sta: 15679}, c: {n: 15680}})
-      expect(takeFastOptionMultiRoot.advanced.startAction).toBe(15679)
-      expect(takeFastOptionMultiRoot.control.nameTransformer).toBe(15680)
+        let takeFastOptionMultiRoot = fastOption({a: {sta: 15679}, c: {n: 15680}})
+        expect(takeFastOptionMultiRoot.advanced.startAction).toBe(15679)
+        expect(takeFastOptionMultiRoot.control.nameTransformer).toBe(15680)
 
-      let takeFastOptionMultiInner = fastOption({c: {n: 1, c: 2}})
-      expect(takeFastOptionMultiInner.control.nameTransformer).toBe(1)
-      expect(takeFastOptionMultiInner.control.createBlankProperty).toBe(2)
-  })
+        let takeFastOptionMultiInner = fastOption({c: {n: 1, c: 2}})
+        expect(takeFastOptionMultiInner.control.nameTransformer).toBe(1)
+        expect(takeFastOptionMultiInner.control.createBlankProperty).toBe(2)
+    })
 
     test('Alien fast-options properly integrate into alien option system', () => {
-        let underscoreEmail = ℿ(['email'], {c: {n: t => '_'+t}}).setEmail('john')
+        let underscoreEmail = ℿ(['email'], {c: {n: t => '_' + t}}).setEmail('john')
+        expect(underscoreEmail._email).toBe('john')
+    })
+
+    test('camel case options properly resolve', () => {
+        let underscoreEmail = ℿ(['email'], {c: {nT: t => '_' + t}}).setEmail('john')
         expect(underscoreEmail._email).toBe('john')
     })
 })
