@@ -7,9 +7,9 @@ import {head, filter, size, map, findIndex} from 'lodash'
  * @returns {string} The new string
  * @nosideeffects
  */
-const toCamelCase = (prefix, string) => {
-    return ('' + prefix + (string.charAt(0).toUpperCase()) + string.substring(1, string.length))
-}
+const toCamelCase = (prefix, string) => 
+    ('' + prefix + (string.charAt(0).toUpperCase()) + string.substring(1, string.length))
+
 
 /**
  * See if an object is a function or lambda
