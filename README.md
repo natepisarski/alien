@@ -29,7 +29,11 @@ you get:
 myObject.setProp1("Hey").setProp2("There")
 ```
 
-This, in combination with pure functions, creates a powerful, expressive means of modifying your DTOs.
+This is supposed to streamline your data-transfer objects.
+
+**Frankly, this design pattern is horrible for real code!** This package is very much a "because it was fun to write" sort of thing. In that same spirit, 2 more design goals were accomplished here:
+- **EVERYTHING** is configurable
+- **Code Golf** support is included
 
 # Absolutely Everything is Configurable
 Let's say you don't like `set[Property]` as the property syntax. You can pass in the `setterTransformer` 
@@ -44,20 +48,20 @@ You can configure:
 * How to name the properties (`control.nameTransformer`)
 * How to name the setters (`control.setterTransformer`)
 * Whether or not to add a `.set({prop: 'val'})` interface (`control.setObjects`)
-* Whether you initialize properties are `undefined` or simply don't add them (`control.createBlankProperty`)
+* Whether you start with properties which are `undefined` or simply don't add them (`control.createBlankProperty`)
 * What to do when the object begins building (`advanced.startAction`)
 * What to do when the object is about to be done building (`advanced.finalAction`)
 * What to do every time a property is processed (when it's making the setters) (`advanced.stepAction`)
-* Whether or not to override the schema step and use unsafe validation (`advanced.allowUnsafeInitialization`)
+* Whether or not to override the schema step and use "unsafe validation" (`advanced.allowUnsafeInitialization`)
 
-## Saving Space
+## Code Golf Shenanigans
 Any of the options are configurable with the least amount of characters to uniqueled identify the setting...  (what?)
 
 So, `control.nameTransformer` can be set with `{c: {n" true}}` (c = `control`, n = `nameTransformer`)
 
-This is called a `fast-option`, and it's a large part of what makes alien appealable as a means of reducing the amount of code that needs to be transmitted to the client..
+This is called a `fast-option` in the code. In theory, it could reduce the total amount of code transmitted to a client. With that said, if it reduces your file-size in practice, something goofy is going on in your codebase!
 
 ### Warning: Semver not affected from fast-option breakages
-Since the alien developers cannot know what `fast-option`'s are being used, if a change is made that may break your `fast-option`, it will not bump the major semver version. Be careful! In many cases, it's safer to use the `camel-case-initialism` match.
+Since I can't know what `fast-option`'s are being used, if a change is made that may break your `fast-option`, it will not bump the major semver version. Be careful! In many cases, it's safer to use the `camel-case-initialism` match.
 
 So, `{c: {nT: ''}}` for `{control: {nameTransformer: ''}}`
